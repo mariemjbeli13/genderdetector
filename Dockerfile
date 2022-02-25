@@ -1,14 +1,7 @@
 
-FROM python:3
-RUN apt-get update
+FROM python:3.9.1
+ADD . /python-flask
+WORKDIR /python-flask
+RUN pip install -r requirements.txt
 
-WORKDIR /ML_OPS
-
-COPY ./requirements.txt . 
-
-RUN pip install -r requirements.txt 
-
-ADD model.pickle model.pickle
-ADD main.py main.py
-
-CMD ["python", "main.py"]
+CMD ["env","FLASK_APP=main.py","flask","run","--host=0.0.0.0"]
