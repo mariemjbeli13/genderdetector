@@ -6,8 +6,20 @@
 name: GitHub Actionsfile
 
 on: [push]
-
 jobs:
+  job_id: 
+    name: deploy to GCP
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: 'actions/checkout@v2'
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
