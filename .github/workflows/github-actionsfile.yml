@@ -5,9 +5,7 @@
 
 name: GitHub Actionsfile
 
-on:
-  release:
-    types: [published]
+on: [push]
 
 jobs:
   push_to_registry:
